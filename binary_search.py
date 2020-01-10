@@ -27,21 +27,49 @@ True
 # output: int - number of guesses made - needs to be 7 or less
 
 # make a function that takes in a number 
-# make a counter = 1
-# make lower and upper range variables?
-# the_range = range(0, 101)
+# make low and upper - ints, not ranges!!
+# lower = 0
+# higher = 101
+# num_of_guess = 0
+# guess = None
 
-# loop 
-# guess = the_range / 2
-# lower = range(0, guess)
-# upper = range(guess, val)
+# while loop : guess not = num
+# num_of_guess += 1
+# guess = higher // 2
 
-# returning true early!! 
-# if guess == num, return counter
+# if num > guess
+# lower = guess
 
-# while guess != num
-# num > guess
-# counter += 1
-# the_range = range(guess, 101)
-# guess = the_range / 2
-# lower = 
+# else: if num < guess
+# higher = guess
+
+# outside loop - return num of guesses
+
+def binary_search(val):
+    """Using binary search, find val in range 1-100. Return # of guesses."""
+
+    assert 0 < val < 101, "Val must be between 1-100"
+
+    num_guesses = 0
+
+    lower = 0
+    upper = 101
+    guess = None
+
+    while guess != val:
+    	num_guesses += 1
+    	guess = upper // 2
+    	print("guess", guess)
+    	print("lower", lower)
+    	print("upper", upper)
+
+    	if val > guess:
+    		lower = guess
+    	elif val < guess:
+    		upper = guess
+
+    return num_guesses
+
+
+
+
