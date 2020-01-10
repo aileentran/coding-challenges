@@ -18,6 +18,7 @@
 # outside of loop, return false 
 
 def add_to_zero(nums):
+	"""Check if any of the numbers sum to zero (or is zero)."""
 	if 0 in nums:
 		return True
 
