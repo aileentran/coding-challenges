@@ -58,7 +58,7 @@ def binary_search(val):
 
     while guess != val:
     	num_guesses += 1
-    	guess = upper // 2
+    	guess = (lower - upper) // 2
     	print("guess", guess)
     	print("lower", lower)
     	print("upper", upper)
