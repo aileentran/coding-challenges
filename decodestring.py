@@ -37,3 +37,19 @@ Test cases:
 
 # return string
 
+def decode(string):
+	"""Decode a string."""
+
+	decoded = ""
+
+
+	for idx, char in enumerate(string):
+		if isinstance(char, int) == True:
+			code_idx = char + idx + 1
+			print("idx", idx)
+			print("code_idx", code_idx)
+			decoded += string[code_idx]
+			print(string[code_idx])
+
+	return decoded
+
