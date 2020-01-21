@@ -34,6 +34,7 @@ Test cases:
 # if char is an int 
 # num + (next char = current idx + 1)
 # append value into string 
+# gotta convert string into int as needed! OR JUST SKIP IT WITHIN THE STRING! /)_-'
 
 # return string
 
@@ -42,14 +43,16 @@ def decode(string):
 
 	decoded = ""
 
+	idx = 0
 
-	for idx, char in enumerate(string):
-		if isinstance(char, int) == True:
-			code_idx = char + idx + 1
-			print("idx", idx)
-			print("code_idx", code_idx)
-			decoded += string[code_idx]
-			print(string[code_idx])
+	while idx < len(string):
+		# convert number to int
+		skip = int(string[idx]) 
+		idx += skip + 1
+
+		decoded += string[idx]
+
+		idx += 1
 
 	return decoded
 
