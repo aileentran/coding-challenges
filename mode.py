@@ -37,7 +37,7 @@ def mode(nums):
 	# dictionary
 	counter ={}
 	# set
-	result = {}
+	result = set()
 
 	for num in nums:
 		if num not in counter:
@@ -45,4 +45,17 @@ def mode(nums):
 		else:
 			counter[num] += 1
 
-	return counter
+	occurences = 0
+	for num in counter:
+		if counter[num] > occurences:
+			occurences = counter[num]
+			# accounting for encountering actual mode later in list after establishing one
+				# mode([1, 1, 2, 2, 3, 3, 3, 3, 3])
+				# {1: 2, 2: 2, 3: 5}
+				# {3}
+			result = set()
+			result.add(num) 
+		elif counter[num] == occurences:
+			result.add(num) 
+	
+	return result
