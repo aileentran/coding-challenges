@@ -58,7 +58,7 @@ def has_balanced_brackets(phrase):
     closers = {
     	")" : "(",
     	"}" : "{",
-    	"]" : " [",
+    	"]" : "[",
     	">" : "<"
     }
 
@@ -68,7 +68,7 @@ def has_balanced_brackets(phrase):
     	if char == "(" or char == "[" or char == "{" or char == "<":
     		brackets.append(char)
     	if char in closers:
-    		if closers[char] != brackets[-1]:
+    		if len(brackets) == 0 or closers[char] != brackets[-1]:
     			return False
     		else:
     			brackets.pop()
