@@ -69,14 +69,28 @@ This starts at 4 (highest of the four middle), then goes right:
 # ... ]
 # >>> garden[1][1]
 # 1
-
+# >>> start = [[1,1]]
 # >>> garden[start[0][0]][start[0][1]]
 # 1
 
 import math
 
+garden = [
+	[1, 1, 1],
+	[0, 1, 1],
+	[9, 1, 9]
+	]
+
+garden2 = [
+	[9, 9, 9, 9],
+	[9, 3, 1, 0],
+	[9, 1, 4, 2],
+	[9, 9, 1, 0]
+	]
+
+
 # helper function - WHERE DO I BEGINN?
-def start(garden, nrows, ncols):
+def starting(garden, nrows, ncols):
 	"""Figuring out where to start."""
 
 	start_coords = []
@@ -105,9 +119,19 @@ def start(garden, nrows, ncols):
 		start_coords.append([row2, col1])
 		start_coords.append([row2, col2])
 
-	return start_coords		
+	# determining start coordinates
+	here = []
+	most_carrots = 0
 
+	for coords in start_coords:
+		carrots = garden[coords[0]][coords[1]]
+		if carrots > most_carrots:
+			most_carrots = carrots
+			here = coords
 
+	return here	
+
+print(starting(garden2, 4, 4))
 
 def lunch_count(garden):
     """Given a garden of nrows of ncols, return carrots eaten."""
@@ -124,7 +148,8 @@ def lunch_count(garden):
     nrows = len(garden)
     ncols = len(garden[0])
 
-    start(garden, nrows, ncols)
+
+
 
 
 
