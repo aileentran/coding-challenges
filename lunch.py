@@ -132,24 +132,25 @@ def starting(garden, nrows, ncols):
 	return here	
 
 def lunch_count(garden):
-    """Given a garden of nrows of ncols, return carrots eaten."""
+	"""Given a garden of nrows of ncols, return carrots eaten."""
 
-    # Sanity check that garden is valid
+	# Sanity check that garden is valid
 
-    row_lens = [len(row) for row in garden]
-    assert min(row_lens) == max(row_lens), "Garden not a matrix!"
-    assert all(all(type(c) is int for c in row) for row in garden), \
-        "Garden values must be ints!"
+	row_lens = [len(row) for row in garden]
+	assert min(row_lens) == max(row_lens), "Garden not a matrix!"
+	assert all(all(type(c) is int for c in row) for row in garden), \
+	"Garden values must be ints!"
 
-    # Get number of rows and columns
+	# Get number of rows and columns
 
-    nrows = len(garden)
-    ncols = len(garden[0])
+	nrows = len(garden)
+	ncols = len(garden[0])
 
-    # leveret starts here! indexes of here = [row, col]
-    here = starting(garden, nrows, ncols)
-    row = here[0]
-    col = here[1]
+	# leveret starts here! indexes of here = [row, col]
+	here = starting(garden, nrows, ncols)
+	row = here[0]
+	col = here[1]
+	print('start', here)
 
     # WNES
 	# west = left = garden[row][col-1]
@@ -158,10 +159,22 @@ def lunch_count(garden):
 	# south = down = garden[row+1][col]
 
     # what is in WNES of current location?
-    west = [row, col - 1]
-    north = [row - 1, col]
-    east = [row, col + 1]
-    south = [row + 1, col]
+	west = [row, col - 1]
+	north = [row - 1, col]
+	east = [row, col + 1]
+	south = [row + 1, col]
+
+	next_hop = [west, north, east, south]
+	most_carrots = 0
+	carrots_eaten = 0
+
+	for coords in next_hop:
+		carrots = garden[coords[0]][coords[1]]
+		if carrots > most_carrots:
+			most_carrots = carrots
+			carrots_eaten += carrots
+			here = coords
+		print(here)
 
 
 print(garden2)
