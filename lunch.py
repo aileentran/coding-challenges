@@ -54,11 +54,56 @@ This starts at 4 (highest of the four middle), then goes right:
 # east = right = garden[row][col+1]
 # south = down = garden[row+1][col]
 
+# variable most carrots = 0; NOTE: need to reset each time after entering cell!
+# start = []
+
 # to start
 # need to access middle of the matrix: middle row, middle columns
 # if even number, get two middle rows and/or two middle columns
-# if odd nrows and ncols // 2 + 1 (to get to middle thingy)
-# if even nrows and ncols 
+
+# >>> garden = [
+# ... [1, 1, 1],
+# ... [0, 1, 1],
+# ... [9, 1, 9]
+# ... ]
+# >>> garden[1][1]
+# 1
+
+# >>> garden[start[0][0]][start[0][1]]
+# 1
+
+
+# helper function - WHERE DO I BEGINN?
+def start(garden, nrows, ncols):
+	"""Figuring out where to start."""
+
+	start_coords = []
+
+	row1 = math.ceil(nrows/2)
+	row2 = math.floor(nrows/2)
+	col1 = math.ceil(ncols/2)
+	col2 = math.floor(ncols/2)
+
+	if nrows % 2 != 0 and ncols % 2 != 0:
+		row = math.ceil(nrows/2)
+		col = math.ceil(ncols/2)
+		start_coords.append([row,col])
+	elif nrows % 2 == 0 and ncols % 2 != 0:
+		col = math.ceil(ncols/2)
+		start_coords.append([row1, col])
+		start_coords.append([row2, col])
+	elif nrows % 2 != 0 and ncols % 2 == 0:
+		row = math.ceil(nrows/2)
+		start_coords.append([row, col1])
+		start_coords.append([row, col2])
+	elif nrows % 2 == 0 and ncols % 2 == 0:
+		start_coords.append([row1, col1])
+		start_coords.append([row1, col2])
+		start_coords.append([row2, col1])
+		start_coords.append([row2, col2])
+
+	return start_coords		
+
 
 
 def lunch_count(garden):
@@ -75,3 +120,8 @@ def lunch_count(garden):
 
     nrows = len(garden)
     ncols = len(garden[0])
+
+    start(nrows, ncols)
+
+
+
