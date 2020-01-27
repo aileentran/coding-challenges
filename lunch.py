@@ -60,6 +60,7 @@ This starts at 4 (highest of the four middle), then goes right:
 # to start
 # need to access middle of the matrix: middle row, middle columns
 # if even number, get two middle rows and/or two middle columns
+# INDEXES = want to round.. down..?
 
 # >>> garden = [
 # ... [1, 1, 1],
@@ -72,6 +73,7 @@ This starts at 4 (highest of the four middle), then goes right:
 # >>> garden[start[0][0]][start[0][1]]
 # 1
 
+import math
 
 # helper function - WHERE DO I BEGINN?
 def start(garden, nrows, ncols):
@@ -79,23 +81,24 @@ def start(garden, nrows, ncols):
 
 	start_coords = []
 
-	row1 = math.ceil(nrows/2)
-	row2 = math.floor(nrows/2)
-	col1 = math.ceil(ncols/2)
-	col2 = math.floor(ncols/2)
+	# even rows and columns
+	row1 = math.floor(nrows/2)
+	row2 = row1 - 1
+	col1 = math.floor(ncols/2)
+	col2 = col1 - 1
+
+	# odd rows and columns
+	row_odd = math.floor(nrows/2)
+	col_odd = math.floor(ncols/2)
 
 	if nrows % 2 != 0 and ncols % 2 != 0:
-		row = math.ceil(nrows/2)
-		col = math.ceil(ncols/2)
-		start_coords.append([row,col])
+		start_coords.append([row_odd,col_odd])
 	elif nrows % 2 == 0 and ncols % 2 != 0:
-		col = math.ceil(ncols/2)
-		start_coords.append([row1, col])
-		start_coords.append([row2, col])
+		start_coords.append([row1, col_odd])
+		start_coords.append([row2, col_odd])
 	elif nrows % 2 != 0 and ncols % 2 == 0:
-		row = math.ceil(nrows/2)
-		start_coords.append([row, col1])
-		start_coords.append([row, col2])
+		start_coords.append([row_odd, col1])
+		start_coords.append([row_odd, col2])
 	elif nrows % 2 == 0 and ncols % 2 == 0:
 		start_coords.append([row1, col1])
 		start_coords.append([row1, col2])
@@ -121,7 +124,7 @@ def lunch_count(garden):
     nrows = len(garden)
     ncols = len(garden[0])
 
-    start(nrows, ncols)
+    start(garden, nrows, ncols)
 
 
 
