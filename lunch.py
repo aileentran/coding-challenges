@@ -131,8 +131,6 @@ def starting(garden, nrows, ncols):
 
 	return here	
 
-print(starting(garden2, 4, 4))
-
 def lunch_count(garden):
     """Given a garden of nrows of ncols, return carrots eaten."""
 
@@ -148,7 +146,26 @@ def lunch_count(garden):
     nrows = len(garden)
     ncols = len(garden[0])
 
+    # leveret starts here! indexes of here = [row, col]
+    here = starting(garden, nrows, ncols)
+    row = here[0]
+    col = here[1]
 
+    # WNES
+	# west = left = garden[row][col-1]
+	# north = up = garden[row-1][col]
+	# east = right = garden[row][col+1]
+	# south = down = garden[row+1][col]
+
+    # what is in WNES of current location?
+    west = [row, col - 1]
+    north = [row - 1, col]
+    east = [row, col + 1]
+    south = [row + 1, col]
+
+
+print(garden2)
+print(lunch_count(garden2))
 
 
 
