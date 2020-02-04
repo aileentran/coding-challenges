@@ -45,4 +45,11 @@ class Node(object):
 		return out
 
 
+def rev_ll(node):
+	head = node
 
+	while node.data != None:
+		head = node
+		node = node.next
+
+	return head
