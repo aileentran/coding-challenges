@@ -42,14 +42,15 @@ class Node(object):
 			out.append(str(n.data))
 			n = n.next
 
-		return out
+		return "".join(out)
 
 
 def rev_ll(node):
-	head = node
+	head = None
 
-	while node.data != None:
-		head = node
+	while node:
+		# create a new head node!
+		head = Node(node.data, head)
 		node = node.next
 
 	return head
