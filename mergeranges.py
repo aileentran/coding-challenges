@@ -26,31 +26,19 @@ def merge_ranges(meetings):
     # sort meetings in ascending order based on first ele
     # if first ele same = sort based on second ele
     meetings.sort()
-    print("meetings", meetings)
 
     # range of first meeting. account for end bc end is exclusive!
     curr_range = range(meetings[0][0], meetings[0][1] + 1)
-    print("curr_range", curr_range)
-    # print("curr_range[0]", curr_range[0])
-    # print("curr_range[-1]", curr_range[-1])
-    i = 1
 
     for meeting in meetings:
         start = meeting[0]
         end = meeting[1]
-        print(i)
-        print("start", start)
-        print("end", end)
 
         if start in curr_range and end not in curr_range:
             curr_range = range(curr_range[0], end + 1)
         elif start not in curr_range:
             time_ranges.append((curr_range[0], curr_range[-1]))
             curr_range = range(start, end + 1)
-
-        i += 1
-        print("time_ranges in loop", time_ranges)
-        print("curr_range in loop", curr_range)
 
     # need to append the very last range into time ranges!
     time_ranges.append((curr_range[0], curr_range[-1]))
