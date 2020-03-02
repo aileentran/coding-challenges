@@ -11,6 +11,8 @@
 # change the range to include current tuple's end 
 # else append the new range tuple into the result list
 
+# need to organize meetings in ascending order based on start time
+
 # return result
 
 # test cases:
@@ -21,32 +23,37 @@ def merge_ranges(meetings):
     """Merging overlapping timeframes!"""
 
     time_ranges = []
-    curr_meeting = meetings[0]
-    curr_start = curr_meeting[0]
-    # account for ranges being exclusive 
-    curr_end = curr_meeting[1] + 1
-    print('curr_start', curr_start)
-    print('curr_end', curr_end)
-    
+    # sort meetings in ascending order based on first ele
+    # if first ele same = sort based on second ele
+    meetings.sort()
+    print("meetings", meetings)
+
+    # range of first meeting. account for end bc end is exclusive!
+    curr_range = range(meetings[0][0], meetings[0][1] + 1)
+    print("curr_range", curr_range)
+    # print("curr_range[0]", curr_range[0])
+    # print("curr_range[-1]", curr_range[-1])
+    i = 1
+
     for meeting in meetings:
-        print(meeting)
         start = meeting[0]
         end = meeting[1]
-        
-        if meeting == curr_meeting:
-        	continue
-        elif start in range(curr_start, curr_end):
-            print('in the if part')
-            curr_meeting = (curr_start, end)
-            curr_end = end + 1
-            time_ranges.append(curr_meeting)
-            print('curr_meeting', curr_meeting)
-            print('curr_end', curr_end)
-        else:
-            print('in the else part')
-            print(curr_meeting)
-            time_ranges.append(curr_meeting)
-            curr_meeting = meeting
+        print(i)
+        print("start", start)
+        print("end", end)
+
+        if start in curr_range and end not in curr_range:
+            curr_range = range(curr_range[0], end + 1)
+        elif start not in curr_range:
+            time_ranges.append((curr_range[0], curr_range[-1]))
+            curr_range = range(start, end + 1)
+
+        i += 1
+        print("time_ranges in loop", time_ranges)
+        print("curr_range in loop", curr_range)
+
+    # need to append the very last range into time ranges!
+    time_ranges.append((curr_range[0], curr_range[-1]))
 
     return time_ranges
 
